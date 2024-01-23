@@ -1,0 +1,27 @@
+server:
+  port: 8080
+#  port: 8080
+
+spring:
+  application:
+    name: pagepalette
+  jpa:
+    hibernate:
+      ddl-auto:  create
+    properties:
+      hibernate:
+         show_sql: true
+#        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pagepalette?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: jihee
+    password: jihee
+  # swagger
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
