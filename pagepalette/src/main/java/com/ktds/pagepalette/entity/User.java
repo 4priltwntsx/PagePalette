@@ -9,7 +9,6 @@ import lombok.Getter;
 public class User extends Time{
 
     @Id
-    private String id;
     private String email;
     private String name;
     private String password;
