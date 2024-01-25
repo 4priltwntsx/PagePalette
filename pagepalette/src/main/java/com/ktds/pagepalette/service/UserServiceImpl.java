@@ -2,24 +2,40 @@ package com.ktds.pagepalette.service;
 
 import com.ktds.pagepalette.dto.user.UserJoinReq;
 import com.ktds.pagepalette.dto.user.UserLoginReq;
+import com.ktds.pagepalette.entity.User;
+import com.ktds.pagepalette.exception.NotFoundException;
 import com.ktds.pagepalette.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.NotFound;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
-    @Override
-    public String login(UserLoginReq userLoginReq) {
+    private final String MESSAGE = "존재하지 않는 사용자입니다!";
 
-        return null;
+
+    @Override
+    public boolean login(UserLoginReq userLoginReq) {
+        Optional<User> user = userRepository.findById(userLoginReq.getEmail());
+        return user.map(value -> value.getPassword().equals(userLoginReq.getPassword())).orElse(false);
     }
 
     @Override
+    @Transactional(readOnly=false)
     public boolean join(UserJoinReq userJoinReq) {
+        userRepository.save(new User(userJoinReq.getEmail(), userJoinReq.getName(), userJoinReq.getPassword()));
         return false;
+    }
+
+    @Override
+    public boolean checkEmail(String email) {
+        Optional<User> user = userRepository.findById(email);
+        return user.isEmpty(); // 이미 존재하는 이메일 : false, 사용가능: true
     }
 }
