@@ -2,6 +2,7 @@ package com.ktds.pagepalette.service;
 
 import com.ktds.pagepalette.dto.user.UserJoinReq;
 import com.ktds.pagepalette.dto.user.UserLoginReq;
+import com.ktds.pagepalette.dto.user.UserLoginRes;
 import com.ktds.pagepalette.entity.User;
 import com.ktds.pagepalette.exception.NotFoundException;
 import com.ktds.pagepalette.repository.UserRepository;
@@ -21,16 +22,16 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public boolean login(UserLoginReq userLoginReq) {
+    public Optional<UserLoginRes> login(UserLoginReq userLoginReq) {
         Optional<User> user = userRepository.findById(userLoginReq.getEmail());
-        return user.map(value -> value.getPassword().equals(userLoginReq.getPassword())).orElse(false);
+        return user.map(value -> new UserLoginRes(value.getEmail(), value.getName()));
     }
 
     @Override
     @Transactional(readOnly=false)
     public boolean join(UserJoinReq userJoinReq) {
-        userRepository.save(new User(userJoinReq.getEmail(), userJoinReq.getName(), userJoinReq.getPassword()));
-        return false;
+        userRepository.saveAndFlush(new User(userJoinReq.getEmail(), userJoinReq.getName(), userJoinReq.getPassword()));
+        return true;
     }
 
     @Override
