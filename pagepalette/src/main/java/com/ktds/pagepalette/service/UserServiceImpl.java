@@ -24,6 +24,9 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<UserLoginRes> login(UserLoginReq userLoginReq) {
         Optional<User> user = userRepository.findById(userLoginReq.getEmail());
+        if(user.isEmpty() || !user.get().getPassword().equals(userLoginReq.getPassword())){
+            return Optional.empty();
+        }
         return user.map(value -> new UserLoginRes(value.getEmail(), value.getName()));
     }
 

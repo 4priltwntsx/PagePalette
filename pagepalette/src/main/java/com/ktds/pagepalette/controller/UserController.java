@@ -2,6 +2,7 @@ package com.ktds.pagepalette.controller;
 
 import com.ktds.pagepalette.dto.user.UserJoinReq;
 import com.ktds.pagepalette.dto.user.UserLoginReq;
+import com.ktds.pagepalette.dto.user.UserLoginRes;
 import com.ktds.pagepalette.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +27,12 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserLoginReq request) throws Exception {
-        return new ResponseEntity<>(userService.login(request), HttpStatus.ACCEPTED);
+        Optional<UserLoginRes> response = userService.login(request);
+        if(response.isEmpty()){
+            return new ResponseEntity<>("login fail", HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(response.get(), HttpStatus.ACCEPTED);
     }
+
 
 }
