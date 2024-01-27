@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UserJoinReq request) throws Exception {
         return new ResponseEntity<>(userService.join(request), HttpStatus.ACCEPTED);
     }
