@@ -27,14 +27,14 @@ public class BoardController {
         return new ResponseEntity<>(boardService.readOne(board_id), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/{board_id}")
-    public ResponseEntity<?> modifyBoard(@PathVariable String board_id){
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+    @PutMapping("/")
+    public ResponseEntity<?> modifyBoard(@RequestBody BoardReq request){
+        return new ResponseEntity<>(boardService.modifyBoard(request), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{board_id}")
-    public ResponseEntity<?> deleteBoard(@PathVariable String board_id){
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+    public ResponseEntity<?> deleteBoard(@PathVariable Long board_id){
+        return new ResponseEntity<>(boardService.deleteBoard(board_id), HttpStatus.ACCEPTED);
     }
 
 }

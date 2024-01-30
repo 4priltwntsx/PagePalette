@@ -29,4 +29,9 @@ public class Board extends Time{
         this.user = user;
         this.isActive = isActive;
     }
+
+    public void update(String title, String bgColor){
+        this.title = title;
+        this.bgColor = bgColor;
+    }
 }

@@ -10,6 +10,6 @@ public interface BoardService {
     public Long createBoard(BoardReq boardReq);
     public List<BoardReadRes> readAll(String email);
     public BoardReadRes readOne(Long boardId);
-    public Boolean modifyBoard(BoardReq boardReq);
-    public Boolean deleteBoard(String boardId);
+    public Long modifyBoard(BoardReq boardReq);
+    public Boolean deleteBoard(Long boardId);
 }

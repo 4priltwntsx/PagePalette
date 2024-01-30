@@ -47,12 +47,25 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Boolean modifyBoard(BoardReq boardReq) {
-        return false;
+    @Transactional
+    public Long modifyBoard(BoardReq boardReq) {
+        Optional<Board> board = boardRepository.findById(boardReq.getId());
+        if(board.isEmpty()){
+            throw new NotFoundException("존재하지 않는 보드 아이디");
+        }
+        Board updated = board.get();
+        updated.update(boardReq.getTitle(), boardReq.getBgColor());
+        return boardRepository.save(updated).getId();
     }
 
     @Override
-    public Boolean deleteBoard(String boardId) {
-        return false;
+    @Transactional
+    public Boolean deleteBoard(Long boardId) {
+        Optional<Board> board = boardRepository.findById(boardId);
+        if(board.isEmpty()) {
+            throw new NotFoundException("존재하지 않는 보드 아이디");
+        }
+        boardRepository.delete(board.get());
+        return true;
     }
 }
