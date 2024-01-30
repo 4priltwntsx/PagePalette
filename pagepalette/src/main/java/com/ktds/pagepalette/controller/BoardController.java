@@ -23,8 +23,8 @@ public class BoardController {
     }
 
     @GetMapping("/detail/{board_id}")
-    public ResponseEntity<?> readOne(@PathVariable String board_id){
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+    public ResponseEntity<?> readOne(@PathVariable Long board_id){
+        return new ResponseEntity<>(boardService.readOne(board_id), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{board_id}")
