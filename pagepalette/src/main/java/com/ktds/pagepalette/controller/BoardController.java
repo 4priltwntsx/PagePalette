@@ -19,7 +19,7 @@ public class BoardController {
 
     @GetMapping("/{user_email}")
     public ResponseEntity<?> readAll(@PathVariable String user_email){
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(boardService.readAll(user_email), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/detail/{board_id}")

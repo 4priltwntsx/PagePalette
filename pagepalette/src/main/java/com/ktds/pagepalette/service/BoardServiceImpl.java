@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +31,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public ArrayList<BoardReadRes> readAll() {
-        return null;
+    public List<BoardReadRes> readAll(String email) {
+        return boardRepository.find(email);
     }
 
     @Override
