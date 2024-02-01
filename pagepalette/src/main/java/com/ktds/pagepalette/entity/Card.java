@@ -1,11 +1,14 @@
 package com.ktds.pagepalette.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "card")
+@ToString
+@NoArgsConstructor
 public class Card extends Time{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +27,15 @@ public class Card extends Time{
 //    @ManyToOne(targetEntity = Board.class, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id")
 //    private Board board;
+
+
+    @Builder
+    public Card(Long id, String title, String description, Double pos, String bgColor, List list) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.pos = pos;
+        this.bgColor = bgColor;
+        this.list = list;
+    }
 }
