@@ -2,6 +2,7 @@ package com.ktds.pagepalette.controller;
 
 import com.ktds.pagepalette.dto.card.CardReq;
 import com.ktds.pagepalette.service.CardService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/card")
+@Tag(name = "문장 카드 API(CardController)")
 public class CardController {
     private final CardService cardService;
 

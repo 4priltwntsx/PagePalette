@@ -4,6 +4,7 @@ import com.ktds.pagepalette.dto.user.UserJoinReq;
 import com.ktds.pagepalette.dto.user.UserLoginReq;
 import com.ktds.pagepalette.dto.user.UserLoginRes;
 import com.ktds.pagepalette.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")
+@Tag(name = "유저 API(UserController)")
 public class UserController {
     private final UserService userService;
 

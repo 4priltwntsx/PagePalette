@@ -3,6 +3,7 @@ package com.ktds.pagepalette.controller;
 import com.ktds.pagepalette.dto.list.ListModifyReq;
 import com.ktds.pagepalette.dto.list.ListReq;
 import com.ktds.pagepalette.service.ListService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/list")
+@Tag(name = "리스트 API(ListController)")
 public class ListController {
     private final ListService listService;
     @PostMapping

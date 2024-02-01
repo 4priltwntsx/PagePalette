@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/board")
-@Tag(name = "페이지팔레트 보드판 생성하기")
+@Tag(name = "보드판 API(BoardController)")
 public class BoardController {
     private final BoardService boardService;
     @PostMapping
