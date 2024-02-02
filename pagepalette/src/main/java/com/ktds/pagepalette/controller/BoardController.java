@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping(path = "/board")
 @Tag(name = "보드판 API(BoardController)")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class BoardController {
     private final BoardService boardService;
     @PostMapping

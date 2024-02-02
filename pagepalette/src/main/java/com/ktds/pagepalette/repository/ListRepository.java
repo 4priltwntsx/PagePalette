@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface ListRepository extends JpaRepository<List, Long> {
-    public ArrayList<List> findListByBoardAAndIsActiveIsTrue(Board board);
+    public ArrayList<List> findListByBoardAndIsActiveIsTrue(Board board);
 }

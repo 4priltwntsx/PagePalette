@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping(path = "/card")
 @Tag(name = "문장 카드 API(CardController)")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class CardController {
     private final CardService cardService;
 

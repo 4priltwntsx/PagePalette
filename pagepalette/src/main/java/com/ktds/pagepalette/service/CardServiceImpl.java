@@ -75,13 +75,17 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Transactional
     public Boolean deleteCard(Long cardId) {
         Optional<Card> optionalCard = cardRepository.findById(cardId);
         if(optionalCard.isEmpty()){
             throw new NotFoundException("존재하지 않는 카드 아이디");
         }
         Card card = optionalCard.get();
-
-        return card.deleteCard();
+        if(card.deleteCard()){
+            cardRepository.save(card);
+            return true;
+        }
+        return false;
     }
 }

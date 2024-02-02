@@ -17,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")
 @Tag(name = "유저 API(UserController)")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class UserController {
     private final UserService userService;
 

@@ -14,6 +14,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @RequestMapping(path = "/book")
 @Tag(name = "도서 API(BookController)")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class BookController {
     private final BookService bookService;
     @GetMapping("/search")

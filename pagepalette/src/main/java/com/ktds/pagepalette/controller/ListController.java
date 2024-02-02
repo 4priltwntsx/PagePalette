@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping(path = "/list")
 @Tag(name = "리스트 API(ListController)")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class ListController {
     private final ListService listService;
     @PostMapping

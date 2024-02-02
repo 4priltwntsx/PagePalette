@@ -53,12 +53,13 @@ public class ListServiceImpl implements ListService{
         Optional<Board> optBoard = boardRepository.findById(boardId);
         if(optBoard.isEmpty()) throw new NotFoundException("존재하지 않는 보드 아이디!");
 
-        return new ArrayList<>(listRepository.findListByBoardAAndIsActiveIsTrue(optBoard.get()).stream()
+        return new ArrayList<>(listRepository.findListByBoardAndIsActiveIsTrue(optBoard.get()).stream()
                 .map(m-> new ListRes(m.getId(), m.getBookTitle()))
                 .toList());
     }
 
     @Override
+    @Transactional
     public Boolean deleteList(Long listId) {
         Optional<List> optList = listRepository.findById(listId);
         if(optList.isEmpty()) throw new NotFoundException("존재하지 않는 리스트 아이디!");
