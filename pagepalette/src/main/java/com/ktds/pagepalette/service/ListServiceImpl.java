@@ -52,8 +52,19 @@ public class ListServiceImpl implements ListService{
     public ArrayList<ListRes> readAll(Long boardId) {
         Optional<Board> optBoard = boardRepository.findById(boardId);
         if(optBoard.isEmpty()) throw new NotFoundException("존재하지 않는 보드 아이디!");
-        return new ArrayList<>(listRepository.findListByBoard(optBoard.get()).stream()
+
+        return new ArrayList<>(listRepository.findListByBoardAAndIsActiveIsTrue(optBoard.get()).stream()
                 .map(m-> new ListRes(m.getId(), m.getBookTitle()))
                 .toList());
+    }
+
+    @Override
+    public Boolean deleteList(Long listId) {
+        Optional<List> optList = listRepository.findById(listId);
+        if(optList.isEmpty()) throw new NotFoundException("존재하지 않는 리스트 아이디!");
+        List list = optList.get();
+        list.deleteList();
+        listRepository.save(list);
+        return true;
     }
 }

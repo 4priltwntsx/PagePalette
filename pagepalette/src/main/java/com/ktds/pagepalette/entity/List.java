@@ -42,4 +42,8 @@ public class List extends Time
     public void updateListInfo(String title){
         this.bookTitle = title;
     }
+
+    public void deleteList(){
+        this.isActive = false;
+    }
 }

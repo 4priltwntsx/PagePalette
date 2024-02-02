@@ -32,6 +32,6 @@ public class ListController {
 
     @DeleteMapping("/{list_id}")
     public ResponseEntity<?> deleteList(@PathVariable Long list_id){
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(listService.deleteList(list_id), HttpStatus.ACCEPTED);
     }
 }

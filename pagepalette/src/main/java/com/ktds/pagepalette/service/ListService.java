@@ -10,4 +10,5 @@ public interface ListService {
     public Boolean createList(ListReq req);
     public Boolean modifyList(ListModifyReq req);
     public ArrayList<ListRes> readAll(Long boardId);
+    public Boolean deleteList(Long listId);
 }

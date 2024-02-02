@@ -27,6 +27,7 @@ public class Card extends Time{
 //    @ManyToOne(targetEntity = Board.class, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id")
 //    private Board board;
+    private Boolean isActive;
 
 
     @Builder
