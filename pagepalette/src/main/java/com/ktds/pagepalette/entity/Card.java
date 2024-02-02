@@ -30,7 +30,6 @@ public class Card extends Time{
     private Boolean isActive;
 
 
-    @Builder
     public Card(Long id, String title, String description, Double pos, String bgColor, List list) {
         this.id = id;
         this.title = title;
@@ -39,4 +38,17 @@ public class Card extends Time{
         this.bgColor = bgColor;
         this.list = list;
     }
+
+    public void updateCardInfo(String description, Double pos, String bgColor){
+        this.description = description;
+        this.pos = pos;
+        this.bgColor = bgColor;
+    }
+
+    public Boolean deleteCard(){
+        this.isActive = false;
+        return true;
+    }
+
+
 }
