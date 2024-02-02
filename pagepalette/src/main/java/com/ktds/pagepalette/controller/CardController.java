@@ -29,7 +29,7 @@ public class CardController {
 
     @GetMapping("/detail/{card_id}")
     public ResponseEntity<?> readOneCard(@PathVariable Long card_id) {
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(cardService.readDetail(card_id), HttpStatus.ACCEPTED);
     }
 
 

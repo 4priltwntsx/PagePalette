@@ -1,17 +1,20 @@
 package com.ktds.pagepalette.dto.card;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CardListRes {
+@NoArgsConstructor
+public class CardRes {
     private String description;
     private Double pos;
     private String bgColor;
 
-    public CardListRes(String description, Double pos, String bgColor) {
+    @Builder
+    public CardRes(String description, Double pos, String bgColor) {
         this.description = description;
         this.pos = pos;
         this.bgColor = bgColor;

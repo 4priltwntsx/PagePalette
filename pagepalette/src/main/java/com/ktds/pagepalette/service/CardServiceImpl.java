@@ -1,7 +1,7 @@
 package com.ktds.pagepalette.service;
 
-import com.ktds.pagepalette.dto.card.CardListRes;
 import com.ktds.pagepalette.dto.card.CardReq;
+import com.ktds.pagepalette.dto.card.CardRes;
 import com.ktds.pagepalette.entity.Card;
 import com.ktds.pagepalette.entity.List;
 import com.ktds.pagepalette.exception.NotFoundException;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class CardServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
 
     private final ListRepository listRepository;
     private final CardRepository cardRepository;
@@ -28,7 +28,7 @@ public class CardServiceImpl implements CardService{
     public Long createCard(CardReq request) {
         Optional<List> optionalList = listRepository.findById(request.getListId());
 
-        if(optionalList.isEmpty()){
+        if (optionalList.isEmpty()) {
             throw new NotFoundException("존재하지 않는 리스트 아이디!");
         }
         ModelMapper mapper = new ModelMapper();
@@ -41,18 +41,24 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public ArrayList<CardListRes> readAll(Long listId) {
+    public ArrayList<CardRes> readAll(Long listId) {
         Optional<List> optionalList = listRepository.findById(listId);
 
-        if(optionalList.isEmpty()){
+        if (optionalList.isEmpty()) {
             throw new NotFoundException("존재하지 않는 리스트 아이디!");
         }
         return cardRepository.findCardsByListId(listId);
     }
 
     @Override
-    public Card readDetail() {
-        return null;
+    public CardRes readDetail(Long cardId) {
+        Optional<Card> optionalCard = cardRepository.findById(cardId);
+        if(optionalCard.isEmpty()){
+            throw new NotFoundException("존재하지 않는 카드 아이디");
+        }
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setAmbiguityIgnored(false);
+        return new ModelMapper().map(optionalCard.get(), CardRes.class);
     }
 
     @Override
