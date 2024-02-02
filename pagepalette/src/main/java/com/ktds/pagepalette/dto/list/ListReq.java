@@ -10,4 +10,5 @@ import lombok.Setter;
 public class ListReq {
     Long boardId;
     String bookTitle;
+    String bookIsbn;
 }
