@@ -27,10 +27,17 @@ const request = (method, url, data) =>{
 // }
 
 
+
+
 export const board = {
     fetch(email) {
         return request('get', `/board/${email}`)
+    },
+
+    create(title, bgColor, userEmail){
+        return request('post', '/board', {title, bgColor, userEmail});
     }
+
 }
 
 export const auth = {
