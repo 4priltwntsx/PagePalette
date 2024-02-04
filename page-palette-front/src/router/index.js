@@ -5,13 +5,23 @@ import Login from "../components/Login.vue";
 import NotFound from "../components/NotFound.vue";
 import Board from "../components/Board.vue";
 import Card from "../components/Card.vue";
+import store from '../store'
+
 Vue.use(VueRouter);
 
 // const requireAuth = (to, from, next) => {
-//   const isAuth = localStorage.getItem('token')
+//   const isAuth = localStorage.getItem('token') // 로그인했는지 안했는지 확인
 //   const loginPath = `/login?rPath=${encodeURIComponent(to.path)}`
 //   isAuth ? next() : next(loginPath)
 // }
+
+// // 임시
+const requireAuth = (to, from, next) => {
+    const loginPath = `/login?rPath=${encodeURIComponent(to.path)}`
+    store.getters.isAuth ? next() : next(loginPath)
+  }
+  
+
 
 const router = new VueRouter({
   mode: "history",
@@ -19,7 +29,8 @@ const router = new VueRouter({
     {
       path: "/",
       component: Home,
-      // beforeEnter: requireAuth()
+      beforeEnter: requireAuth // 라우터 바뀔때마다
+      
     },
     {
       path: "/login",
