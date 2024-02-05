@@ -1,6 +1,6 @@
 <template>
   <div class="card-item">
-    <div>{{data.cardId}}</div>
+    <div>{{data.description}}</div>
     <div class="card-item-meta" v-if="data.description">&equiv;</div>
   </div>
 </template>

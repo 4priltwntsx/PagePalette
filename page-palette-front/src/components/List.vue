@@ -3,10 +3,9 @@
     <div class="list-header">
       <div class="list-header-title">{{data.bookTitle}}</div>
     </div>
-      <pre>{{card}}</pre>
     <div class="card-list" :data-list-id="data.listId">
 
-      <CardItem v-for="card in cards" :key="`${card.cardId}`" :data="card"/>
+      <CardItem v-for="card in data.cards" :key="`${card.cardId}`" :data="card"/>
     </div>
     
     <div v-if="isAddCard">
@@ -23,7 +22,6 @@
 <script>
 import AddCard from './AddCard.vue'
 import CardItem from './CardItem.vue'
-import {mapActions, mapState} from 'vuex'
 export default {
   components: {AddCard, CardItem},
   props: ['data'],
@@ -33,21 +31,16 @@ export default {
     }
   },
   computed:{
-    ...mapState({
-      cards : 'cards'
-    })
+
   },
   created() {
     this.fetchData()
   },
 
   methods:{
-    ...mapActions([
-      'FETCH_CARD'
-    ]),
+
     fetchData(){
         console.log("이거이거" + this.data.listId)
-        this.FETCH_CARD({listId:this.data.listId})
     }
 }
 

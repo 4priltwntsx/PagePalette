@@ -22,9 +22,10 @@ const actions = {
     },
 
 //////////////////// CARD
-    ADD_CARD({distpatch, state},  {title, listId, pos, bgColor, description}){
+    ADD_CARD({dispatch, state},  {title, listId, pos, bgColor, description}){
         return api.card.create(title, listId, pos, bgColor, description)
-        .then(()=> distpatch('FETCH_BOARD', {id: state.board.boardId}))
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
+
     },
     FETCH_CARD({commit}, {listId}){
         return api.card.fetchCard(listId).then(data=>{

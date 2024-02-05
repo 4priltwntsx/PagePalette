@@ -31,13 +31,14 @@ public class Card extends Time{
 
 
     @Builder
-    public Card(Long id, String title, String description, Double pos, String bgColor, List list) {
+    public Card(Long id, String title, String description, Double pos, String bgColor, List list, Boolean isActive) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.pos = pos;
         this.bgColor = bgColor;
         this.list = list;
+        this.isActive = isActive;
     }
 
     public void updateCardInfo(String description, Double pos, String bgColor){

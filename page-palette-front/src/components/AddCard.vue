@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {mapActions, mapMutations} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 
 export default {
   props: ['listId'],
@@ -23,16 +23,16 @@ export default {
   computed: {
     invalidInput() {
       return !this.inputTitle.trim()
-    }
+    },
+    ...mapState({
+      board: 'board',
+    })
   },
   mounted() {
     this.$refs.inputText.focus()
     // this.setupClickOutside(this.$el)
   },
   methods: {
-      ...mapMutations([
-        'SET_CARDS'
-      ]),
     ...mapActions([
       'ADD_CARD'
     ]),
@@ -42,7 +42,8 @@ export default {
       const {inputTitle, listId} = this
       console.log(listId)
       this.ADD_CARD({title: inputTitle, listId, pos:0, description: inputTitle, bgColor:"008B8B"})
-        .finally(_=> this.inputTitle = '')
+        
+      .finally(()=> this.inputTitle = '')
 
     },
     // setupClickOutside(el) {

@@ -7,6 +7,7 @@ import com.ktds.pagepalette.entity.Board;
 import com.ktds.pagepalette.entity.List;
 import com.ktds.pagepalette.exception.NotFoundException;
 import com.ktds.pagepalette.repository.BoardRepository;
+import com.ktds.pagepalette.repository.CardRepository;
 import com.ktds.pagepalette.repository.ListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ import java.util.Optional;
 public class ListServiceImpl implements ListService{
     private final ListRepository listRepository;
     private final BoardRepository boardRepository;
-
+    private final CardRepository cardRepository;
     @Override
     @Transactional
     public Boolean createList(ListReq req) {
@@ -54,7 +55,7 @@ public class ListServiceImpl implements ListService{
         if(optBoard.isEmpty()) throw new NotFoundException("존재하지 않는 보드 아이디!");
 
         return new ArrayList<>(listRepository.findListByBoardAndIsActiveIsTrue(optBoard.get()).stream()
-                .map(m-> new ListRes(m.getId(), m.getBookTitle()))
+                .map(m-> new ListRes(m.getId(), m.getBookTitle(), cardRepository.findCardsByListId(m.getId())))
                 .toList());
     }
 

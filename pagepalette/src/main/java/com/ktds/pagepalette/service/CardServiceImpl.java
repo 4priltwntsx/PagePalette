@@ -34,7 +34,7 @@ public class CardServiceImpl implements CardService {
         }
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setAmbiguityIgnored(true);
-        Card card = Card.builder()
+        Card card = Card.builder().isActive(true)
                 .list(optionalList.get())
                 .title(request.getTitle())
                 .pos(request.getPos()).description(request.getDescription()).bgColor(request.getBgColor())

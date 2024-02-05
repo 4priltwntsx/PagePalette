@@ -7,7 +7,7 @@
         </div>
         <div class="list-section-wrapper">
           <div class="list-section">
-            <pre>{{list}}</pre>
+
             <div class="list-wrapper" v-for="l in list" :key="l.bookTitle">
                 <List :data="l" />
               </div>
