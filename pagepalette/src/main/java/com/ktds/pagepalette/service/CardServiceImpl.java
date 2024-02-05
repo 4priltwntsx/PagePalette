@@ -34,10 +34,14 @@ public class CardServiceImpl implements CardService {
         }
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setAmbiguityIgnored(true);
-        Card card = new ModelMapper().map(request, Card.class);
-        card.setList(optionalList.get());
+        Card card = Card.builder()
+                .list(optionalList.get())
+                .title(request.getTitle())
+                .pos(request.getPos()).description(request.getDescription()).bgColor(request.getBgColor())
+                .build();
+        cardRepository.save(card);
 
-        return cardRepository.save(card).getList().getId();
+        return optionalList.get().getId();
 
     }
 

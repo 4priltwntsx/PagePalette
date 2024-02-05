@@ -33,11 +33,29 @@ export const board = {
     fetch(email) {
         return request('get', `/board/${email}`)
     },
+    fetchOne(id){
+        return request('get', `/board/detail/${id}`)
+    },
 
     create(title, bgColor, userEmail){
         return request('post', '/board', {title, bgColor, userEmail});
     }
 
+}
+export const list = {
+    fetchList(boardId){
+        return request('get', `/list/${boardId}`)
+    }
+}
+
+export const card = {
+    create(title, listId, pos, bgColor, description){
+        return request('post', '/card', {title, listId, pos, bgColor, description})
+    },
+
+    fetchCard(listId){
+        return request('get', `/card/${listId}`)
+    }
 }
 
 export const auth = {

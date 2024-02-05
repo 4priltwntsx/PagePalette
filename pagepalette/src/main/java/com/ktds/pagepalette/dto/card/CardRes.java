@@ -12,11 +12,12 @@ public class CardRes {
     private String description;
     private Double pos;
     private String bgColor;
-
+    private Long cardId;
     @Builder
-    public CardRes(String description, Double pos, String bgColor) {
+    public CardRes(String description, Double pos, String bgColor, Long cardId) {
         this.description = description;
         this.pos = pos;
         this.bgColor = bgColor;
+        this.cardId = cardId;
     }
 }

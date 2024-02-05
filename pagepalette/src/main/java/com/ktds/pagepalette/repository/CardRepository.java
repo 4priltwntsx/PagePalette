@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
-    @Query("select new com.ktds.pagepalette.dto.card.CardRes(c.description, c.pos, c.bgColor) from Card c where c.list.id=:listId and c.isActive = true")
+    @Query("select new com.ktds.pagepalette.dto.card.CardRes(c.description, c.pos, c.bgColor, c.id) from Card c where c.list.id=:listId and c.isActive = true")
     public ArrayList<CardRes> findCardsByListId(Long listId);
 
 }

@@ -30,6 +30,7 @@ public class Card extends Time{
     private Boolean isActive;
 
 
+    @Builder
     public Card(Long id, String title, String description, Double pos, String bgColor, List list) {
         this.id = id;
         this.title = title;
