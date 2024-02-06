@@ -1,6 +1,7 @@
 package com.ktds.pagepalette.controller;
 
 import com.ktds.pagepalette.dto.card.CardModifyReq;
+import com.ktds.pagepalette.dto.card.CardPosReq;
 import com.ktds.pagepalette.dto.card.CardReq;
 import com.ktds.pagepalette.service.CardService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +39,11 @@ public class CardController {
     @PutMapping
     public ResponseEntity<?> modifyCard(@RequestBody CardModifyReq request) {
         return new ResponseEntity<>(cardService.modifyCard(request), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/position")
+    public ResponseEntity<?> modifyCardPos(@RequestBody CardPosReq request) {
+        return new ResponseEntity<>(cardService.modifyCardPos(request), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{card_id}")

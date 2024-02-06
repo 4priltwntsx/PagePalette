@@ -8,7 +8,7 @@
         <div class="list-section-wrapper">
           <div class="list-section">
 
-            <div class="list-wrapper" v-for="l in list" :key="l.bookTitle">
+            <div class="list-wrapper" v-for="l in list" :key="l.pos">
                 <List :data="l" />
               </div>
           </div>
@@ -21,6 +21,9 @@
 <script>
 import {mapActions, mapState} from 'vuex'
 import List from '../list/List.vue' 
+import dragger from '../../utils/dragger.js'
+
+
 export default {
   components:{
     List
@@ -28,23 +31,29 @@ export default {
   data() {
     return {
       bid: 0,
-      loading: true
+      loading: true,
+      cDragger: null
     };
   },
   computed:{
     ...mapState({
       board: 'board',
       list: 'list',
+      card: 'card'
     })
   },
   created() {
     this.fetchData()
   },
-
+  updated() {
+    this.setCardDragabble()
+  },
+  
   methods:{
     ...mapActions([
       'FETCH_BOARD',
-      'FETCH_LIST'
+      'FETCH_LIST',
+      'UPDATE_CARD_POS'
     ]),
     fetchData(){
         this.loading = true
@@ -52,9 +61,31 @@ export default {
         this.FETCH_BOARD({id: this.$route.params.bid})
         .then(()=> this.loading = false)
         this.FETCH_LIST({boardId:this.$route.params.bid})
+    },
+    setCardDragabble() {
+      if (this.cDragger) this.cDragger.destroy()
+    
+      this.cDragger = dragger.init(Array.from(this.$el.querySelectorAll('.card-list')))
+      this.cDragger.on('drop', (el, wrapper, target, silblings) => {
+        const targetCard = {
+          cardId: el.dataset.cardId * 1, 
+          pos: 65535,
+        }
+        const {prev, next} = dragger.sibling({
+          el, 
+          wrapper, 
+          candidates: Array.from(wrapper.querySelectorAll('.card-item')), 
+          type: 'card'
+        })  
+        
+        if (!prev && next) targetCard.pos = next.pos / 2
+        else if (!next && prev) targetCard.pos = prev.pos * 2
+        else if (next && prev) targetCard.pos = (prev.pos + next.pos) / 2
+        this.UPDATE_CARD_POS(targetCard)
+      })
     }
   }
-};
+}
 </script>
 
 <style>

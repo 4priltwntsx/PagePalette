@@ -1,6 +1,7 @@
 package com.ktds.pagepalette.service;
 
 import com.ktds.pagepalette.dto.card.CardModifyReq;
+import com.ktds.pagepalette.dto.card.CardPosReq;
 import com.ktds.pagepalette.dto.card.CardReq;
 import com.ktds.pagepalette.dto.card.CardRes;
 import com.ktds.pagepalette.entity.Card;
@@ -12,5 +13,6 @@ public interface CardService {
     public ArrayList<CardRes> readAll(Long listId);
     public CardRes readDetail(Long cardId);
     public Long modifyCard(CardModifyReq request);
+    public Long modifyCardPos(CardPosReq request);
     public Boolean deleteCard(Long cardId);
 }

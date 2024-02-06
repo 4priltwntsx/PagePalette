@@ -57,6 +57,9 @@ export const card = {
     },
     update(payload){
         return request('put', `/card`, payload)
+    },
+    updateCardPos(payload){
+        return request('put', `/card/position`, payload)
     }
 
 }

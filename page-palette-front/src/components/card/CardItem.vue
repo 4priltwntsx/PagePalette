@@ -1,5 +1,5 @@
 <template>
-  <div class="card-item">
+  <div class="card-item" :data-card-id="data.cardId" :data-card-pos="data.pos">
     <router-link :to="`/b/${boardId}/c/${data.cardId}`">
     <div>{{data.description}}</div>
     <div class="card-item-meta" v-if="data.description">&equiv;</div>

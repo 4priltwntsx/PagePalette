@@ -26,6 +26,7 @@ export default {
     },
     ...mapState({
       board: 'board',
+      list: 'list',
     })
   },
   mounted() {
@@ -37,14 +38,20 @@ export default {
       'ADD_CARD'
     ]),
     onSubmit() {
-
       if (this.invalidInput) return 
       const {inputTitle, listId} = this
+      const pos = this.newCardPos()
       console.log(listId)
-      this.ADD_CARD({title: inputTitle, listId, pos:0, description: inputTitle, bgColor:"008B8B"})
+      this.ADD_CARD({title: inputTitle, listId, pos, description: inputTitle, bgColor:"008B8B"})
         
       .finally(()=> this.inputTitle = '')
 
+    },
+    newCardPos() {
+      const curList = this.$store.state.list[0]
+      if (!curList) return 65535
+      if (!curList.cards.length) return 65535
+      return curList.cards[curList.cards.length - 1].pos * 2
     },
     // setupClickOutside(el) {
     //   document.querySelector('body').addEventListener('click', e => {
