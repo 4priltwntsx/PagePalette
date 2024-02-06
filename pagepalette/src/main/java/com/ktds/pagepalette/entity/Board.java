@@ -34,4 +34,8 @@ public class Board extends Time{
         this.title = title;
         this.bgColor = bgColor;
     }
+
+    public void delete(){
+        this.isActive = false;
+    }
 }

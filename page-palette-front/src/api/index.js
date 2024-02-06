@@ -39,6 +39,9 @@ export const board = {
 
     create(title, bgColor, userEmail){
         return request('post', '/board', {title, bgColor, userEmail});
+    },
+    destroyBoard(id){
+        return request('delete', `/board/${id}` )
     }
 
 }

@@ -20,8 +20,11 @@ const actions = {
         commit('SET_LIST', data)
        })
     },
+    DELETE_BOARD(_, {id}){
+        return api.board.destroyBoard(id)
+    },
 
-//////////////////// CARD
+// -------------      CARD      -------------
     ADD_CARD({dispatch, state},  {title, listId, pos, bgColor, description}){
         return api.card.create(title, listId, pos, bgColor, description)
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))

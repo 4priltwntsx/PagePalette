@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    @Query("select new com.ktds.pagepalette.dto.board.BoardReadRes(b.id, b.title, b.bgColor, b.user.email) from Board b where b.user.email =:email")
+    @Query("select new com.ktds.pagepalette.dto.board.BoardReadRes(b.id, b.title, b.bgColor, b.user.email) from Board b where b.user.email =:email and b.isActive=true")
     public ArrayList<BoardReadRes> find(String email);
 }

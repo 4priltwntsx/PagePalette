@@ -61,11 +61,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public Boolean deleteBoard(Long boardId) {
-        Optional<Board> board = boardRepository.findById(boardId);
-        if(board.isEmpty()) {
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+        if(optionalBoard.isEmpty()) {
             throw new NotFoundException("존재하지 않는 보드 아이디");
         }
-        boardRepository.delete(board.get());
+        Board board = optionalBoard.get();
+        board.delete();
         return true;
     }
 }
