@@ -20,4 +20,4 @@
 | Application    | Language      | Framework            |
 | -------------- | ------------- | -------------------- |
 | ✅ Desktop Web | ✅ JavaScript | ✅ Vue.js            |
-|                | ✅ Java       | ✅ Spring/Springboot |
+|                | ✅ Java       | ✅ Springboot/Spring JPA |
