@@ -1,6 +1,7 @@
 package com.ktds.pagepalette.service;
 
 import com.ktds.pagepalette.dto.card.CardModifyReq;
+import com.ktds.pagepalette.dto.card.CardPosReq;
 import com.ktds.pagepalette.dto.card.CardReq;
 import com.ktds.pagepalette.dto.card.CardRes;
 import com.ktds.pagepalette.entity.Card;
@@ -76,6 +77,18 @@ public class CardServiceImpl implements CardService {
         Card card = optionalCard.get();
         card.updateCardInfo(request.getTitle(), request.getDescription(), request.getPos(), request.getBgColor());
         return cardRepository.save(card).getId();
+    }
+
+    @Override
+    @Transactional
+    public Long modifyCardPos(CardPosReq request) {
+        Optional<Card> optionalCard = cardRepository.findById(request.getCardId());
+        if(optionalCard.isEmpty()){
+            throw new NotFoundException("존재하지 않는 카드 아이디");
+        }
+        Card card = optionalCard.get();
+        System.out.println(cardRepository.updatePos(request.getPos(), request.getCardId()));
+        return card.getId();
     }
 
     @Override

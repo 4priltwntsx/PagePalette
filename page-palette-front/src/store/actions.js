@@ -36,6 +36,10 @@ const actions = {
         return api.card.update({cardId, title, description, pos, bgColor})
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
+    UPDATE_CARD_POS({dispatch, state}, {cardId, pos}){
+        return api.card.updateCardPos({cardId, pos})
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
+    },
 
     ////////////////// user
     LOGIN({commit}, {email, password}){
