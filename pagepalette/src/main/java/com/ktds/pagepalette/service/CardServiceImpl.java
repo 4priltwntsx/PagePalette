@@ -100,7 +100,6 @@ public class CardServiceImpl implements CardService {
         }
         Card card = optionalCard.get();
         if(card.deleteCard()){
-            cardRepository.save(card);
             return true;
         }
         return false;

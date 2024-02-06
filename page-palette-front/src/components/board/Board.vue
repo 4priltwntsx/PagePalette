@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex'
 import List from '../list/List.vue' 
 import dragger from '../../utils/dragger.js'
 
@@ -43,13 +43,18 @@ export default {
     })
   },
   created() {
-    this.fetchData()
+    this.fetchData().then(()=>{
+      this.SET_THEME('#' + this.board.bgColor)
+    })
   },
   updated() {
     this.setCardDragabble()
   },
   
   methods:{
+    ...mapMutations([
+      'SET_THEME'
+    ]),
     ...mapActions([
       'FETCH_BOARD',
       'FETCH_LIST',
@@ -58,9 +63,12 @@ export default {
     fetchData(){
         this.loading = true
         console.log(this.$route.params.bid)
-        this.FETCH_BOARD({id: this.$route.params.bid})
-        .then(()=> this.loading = false)
-        this.FETCH_LIST({boardId:this.$route.params.bid})
+        return this.FETCH_BOARD({id: this.$route.params.bid})
+        .then(()=>{ this.loading = false
+          this.FETCH_LIST({boardId:this.$route.params.bid})
+        })
+        
+        
     },
     setCardDragabble() {
       if (this.cDragger) this.cDragger.destroy()

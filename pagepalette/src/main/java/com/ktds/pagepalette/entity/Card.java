@@ -2,6 +2,7 @@ package com.ktds.pagepalette.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ public class Card extends Time{
     private Long id;
     private String title;
     private String description;
+    @ColumnDefault("65535")
     private Double pos;
     private String bgColor;
 
@@ -27,6 +29,7 @@ public class Card extends Time{
 //    @ManyToOne(targetEntity = Board.class, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id")
 //    private Board board;
+    @ColumnDefault("true")
     private Boolean isActive;
 
 

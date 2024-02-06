@@ -60,6 +60,9 @@ export const card = {
     },
     updateCardPos(payload){
         return request('put', `/card/position`, payload)
+    },
+    destroyCard(cardId){
+        return request('delete', `/card/${cardId}`)
     }
 
 }

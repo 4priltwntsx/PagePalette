@@ -40,6 +40,10 @@ const actions = {
         return api.card.updateCardPos({cardId, pos})
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
+    DELETE_CARD({dispatch, state}, {cardId}){
+        return api.card.destroyCard(cardId)
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
+    },
 
     ////////////////// user
     LOGIN({commit}, {email, password}){
