@@ -13,11 +13,13 @@ public class CardRes {
     private Double pos;
     private String bgColor;
     private Long cardId;
+    private String title;
     @Builder
-    public CardRes(String description, Double pos, String bgColor, Long cardId) {
+    public CardRes(String description, Double pos, String bgColor, Long cardId, String title) {
         this.description = description;
         this.pos = pos;
         this.bgColor = bgColor;
         this.cardId = cardId;
+        this.title = title;
     }
 }

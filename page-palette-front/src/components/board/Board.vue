@@ -15,11 +15,12 @@
         </div>
       </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
 import {mapActions, mapState} from 'vuex'
-import List from './List.vue' 
+import List from '../list/List.vue' 
 export default {
   components:{
     List

@@ -27,10 +27,14 @@ const actions = {
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
 
     },
-    FETCH_CARD({commit}, {listId}){
-        return api.card.fetchCard(listId).then(data=>{
+    FETCH_CARD({commit}, {cardId}){
+        return api.card.fetchCard(cardId).then(data=>{
             commit('SET_CARDS', data)
         })
+    },
+    UPDATE_CARD({dispatch, state}, {cardId, title, description, pos, bgColor}){
+        return api.card.update({cardId, title, description, pos, bgColor})
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
 
     ////////////////// user

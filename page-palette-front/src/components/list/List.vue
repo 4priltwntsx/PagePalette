@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import AddCard from './AddCard.vue'
-import CardItem from './CardItem.vue'
+import AddCard from '../card/AddCard.vue'
+import CardItem from '../card/CardItem.vue'
 export default {
   components: {AddCard, CardItem},
   props: ['data'],

@@ -74,7 +74,7 @@ public class CardServiceImpl implements CardService {
             throw new NotFoundException("존재하지 않는 카드 아이디");
         }
         Card card = optionalCard.get();
-        card.updateCardInfo(request.getDescription(), request.getPos(), request.getBgColor());
+        card.updateCardInfo(request.getTitle(), request.getDescription(), request.getPos(), request.getBgColor());
         return cardRepository.save(card).getId();
     }
 

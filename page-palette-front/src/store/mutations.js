@@ -14,8 +14,8 @@ const mutations = {
         state.list = list
     },
     
-    SET_CARDS(state, cards){
-        state.cards = cards;
+    SET_CARDS(state, card){
+        state.card = card;
     },
 
     LOGIN(state, token){

@@ -4,7 +4,7 @@ const state = {
     token: null,
     board: {},
     list: {},
-    cards:{},
+    card: {},
 }
 
 export default state

@@ -41,7 +41,8 @@ public class Card extends Time{
         this.isActive = isActive;
     }
 
-    public void updateCardInfo(String description, Double pos, String bgColor){
+    public void updateCardInfo(String title, String description, Double pos, String bgColor){
+        this.title = title;
         this.description = description;
         this.pos = pos;
         this.bgColor = bgColor;

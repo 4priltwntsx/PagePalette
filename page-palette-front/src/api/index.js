@@ -52,10 +52,13 @@ export const card = {
     create(title, listId, pos, bgColor, description){
         return request('post', '/card', {title, listId, pos, bgColor, description})
     },
-
-    fetchCard(listId){
-        return request('get', `/card/${listId}`)
+    fetchCard(cardId){
+        return request('get', `/card/detail/${cardId}`)
+    },
+    update(payload){
+        return request('put', `/card`, payload)
     }
+
 }
 
 export const auth = {

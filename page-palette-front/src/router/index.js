@@ -2,9 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
-import NotFound from "../components/NotFound.vue";
-import Board from "../components/Board.vue";
-import Card from "../components/Card.vue";
+import NotFound from "../components/common/NotFound.vue";
+import Board from "../components/board/Board.vue";
+import Card from "../components/card/Card.vue";
 import store from '../store'
 
 Vue.use(VueRouter);
