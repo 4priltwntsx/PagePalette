@@ -34,7 +34,12 @@ const actions = {
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
 
-
+    FETCH_BOOK({commit}, {title}){
+        return api.book.search(title)
+        // .then(data=>{
+        //     commit('SET_BOOKS', data.bookList)
+        // })
+    },
 // -------------      CARD      -------------
     ADD_CARD({dispatch, state},  {title, listId, pos, bgColor, description}){
         return api.card.create(title, listId, pos, bgColor, description)

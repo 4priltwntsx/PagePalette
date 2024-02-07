@@ -1,5 +1,6 @@
 const state = {
     isAddBoard: false,
+    isAddList: false,
     boards: [],
     token: null,
     board: {},
@@ -7,7 +8,8 @@ const state = {
     card: {},
     bodyColor: '#ffffff',
     navbarColor: '#026aa7',
-    isShowBoardSettings: false
+    isShowBoardSettings: false,
+    books:[],
 }
 
 export default state

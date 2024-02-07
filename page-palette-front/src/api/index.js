@@ -76,6 +76,12 @@ export const card = {
 
 }
 
+export const book = {
+    search(title){
+        return request('get', `/book/search?bookTitle=${title}&size=50&page=0`)
+    }
+}
+
 export const auth = {
     login(email, password){
         return request('post', '/user/login', {email, password});

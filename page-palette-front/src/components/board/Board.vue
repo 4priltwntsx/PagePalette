@@ -17,7 +17,13 @@
                 <List :data="l" />
               </div>
               <div class="list-wrapper">
-                <AddList/>
+                <!-- <AddList/> -->
+                  <div class="add-list">
+    <a href="" @click.prevent="SET_IS_ADD_LIST(true)">
+      &plus; Create new List
+    </a>
+  </div>
+  <AddList v-if="isAddList"></AddList>
               </div>
           </div>
         </div>
@@ -34,12 +40,11 @@ import AddList from '../list/AddList.vue'
 import dragger from '../../utils/dragger.js'
 import BoardSettings from "./BoardSettings.vue"
 
-
 export default {
   components:{
     List,
     AddList, 
-     BoardSettings
+    BoardSettings,
   },
   data() {
     return {
@@ -48,7 +53,6 @@ export default {
       cDragger: null,
       isEditTitle: false,
       inputTitle: '',
-
     };
   },
   computed:{
@@ -56,7 +60,8 @@ export default {
       board: 'board',
       list: 'list',
       card: 'card', 
-      isShowBoardSettings:'isShowBoardSettings'
+      isShowBoardSettings:'isShowBoardSettings',
+      isAddList:'isAddList'
     })
   },
   created() {
@@ -64,7 +69,7 @@ export default {
       this.inputTitle = this.board.title
       this.SET_THEME('#' + this.board.bgColor)
       this.SET_IS_SHOW_BOARD_SETTINGS(false)
-
+      this.SET_IS_ADD_LIST(false)
     })
   },
   updated() {
@@ -74,7 +79,9 @@ export default {
   methods:{
     ...mapMutations([
       'SET_THEME',
-      'SET_IS_SHOW_BOARD_SETTINGS'
+      'SET_IS_SHOW_BOARD_SETTINGS',
+      'SET_IS_ADD_LIST',
+      
     ]),
     ...mapActions([
       'FETCH_BOARD',
@@ -212,5 +219,22 @@ export default {
   opacity: 1 !important;
   background-color: #fff !important;
   transform: rotate(3deg) !important;
+}
+
+.add-list {
+  background-color: rgba(0,0,0, .1);
+  padding: 12px;
+  color: #ddd;
+  transition: all .3s;
+}
+.add-list a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+.add-list:hover,
+.add-list:focus {
+  background-color: rgba(0,0,0, .3);
+  cursor: pointer;
 }
 </style>

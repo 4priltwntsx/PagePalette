@@ -7,7 +7,7 @@
 
       <CardItem v-for="card in data.cards" :key="`${card.cardId}`" :data="card"/>
     </div>
-    
+
     <div v-if="isAddCard">
       <AddCard :list-id="data.listId" @close="isAddCard=false"/>
     </div>
