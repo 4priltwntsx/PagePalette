@@ -32,7 +32,7 @@ public class BoardController {
         return new ResponseEntity<>(boardService.readOne(board_id), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity<?> modifyBoard(@RequestBody BoardReq request){
         return new ResponseEntity<>(boardService.modifyBoard(request), HttpStatus.ACCEPTED);
     }

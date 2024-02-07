@@ -6,6 +6,16 @@
       </div>
       <ul class="menu-list">
         <li><a href="" @click.prevent="onDeleteBoard">Delete Board</a></li>
+        <li>Change Background</li>
+        <div class="color-picker">
+          <a href="" data-value="7BD3EA" @click.prevent="onChangeTheme"></a>
+          <a href="" data-value="A1EEBD" @click.prevent="onChangeTheme"></a>
+          <a href="" data-value="FF9843" @click.prevent="onChangeTheme"></a>
+          <a href="" data-value="FFDD95" @click.prevent="onChangeTheme"></a>          
+          <a href="" data-value="86A7FC" @click.prevent="onChangeTheme"></a>
+          <a href="" data-value="3468C0" @click.prevent="onChangeTheme"></a>  
+          <a href="" data-value="F28585" @click.prevent="onChangeTheme"></a>          
+        </div>
       </ul>
     </div>
   </template>
@@ -15,16 +25,26 @@
   
   export default {
     computed:{
-        ...mapState({
-            baord: 'board'
-        })
+    ...mapState({
+      board: 'board',
+      list: 'list',
+      card: 'card', 
+      isShowBoardSettings:'isShowBoardSettings'
+    })
+  },
+    mounted(){
+      Array.from(this.$el.querySelectorAll('.color-picker a')).forEach(el=>{
+        el.style.backgroundColor = "#" + el.dataset.value
+      })
     },
     methods: {
       ...mapMutations([
-        'SET_IS_SHOW_BOARD_SETTINGS'
+        'SET_IS_SHOW_BOARD_SETTINGS',
+        'SET_THEME',
       ]),
       ...mapActions([
-        'DELETE_BOARD'
+        'DELETE_BOARD',
+        'UPDATE_BOARD',
       ]),
       onClose() {
         this.SET_IS_SHOW_BOARD_SETTINGS(false)
@@ -34,6 +54,11 @@
         this.DELETE_BOARD({id:this.$route.params.bid})
         .then(()=>this.SET_IS_SHOW_BOARD_SETTINGS(false))
         .then(()=>this.$router.push('/'))
+      },
+      onChangeTheme(el){
+        const bgColor = el.target.dataset.value
+        this.UPDATE_BOARD({id:this.board.boardId, title:this.board.title, bgColor})
+        .then(()=>this.SET_THEME("#" + bgColor))
       }
     }
   }
@@ -94,10 +119,12 @@
   }
   .color-picker {
     margin: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .color-picker a {
     display: inline-block;
-    width: 49%;
     height: 100px;
     border-radius: 8px;
   }

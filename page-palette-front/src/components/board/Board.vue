@@ -3,7 +3,9 @@
     <div class="board-wrapper">
       <div class="board">
         <div class="board-header">
-          <span class="board-title">{{board.title}}</span>
+          <input class="form-control" v-if="isEditTitle" type="text" v-model="inputTitle"
+           ref="inputTitle" @blur="onSubmitTitle" @keyup.enter="onSubmitTitle">
+          <span v-else class="board-title" @click=onClickTitle>{{board.title}}</span>
           <a class="board-header-btn show-menu" href="" @click.prevent="onShowSettings">
             ... Show Menu
           </a>
@@ -13,6 +15,9 @@
 
             <div class="list-wrapper" v-for="l in list" :key="l.pos">
                 <List :data="l" />
+              </div>
+              <div class="list-wrapper">
+                <AddList/>
               </div>
           </div>
         </div>
@@ -25,19 +30,25 @@
 <script>
 import {mapActions, mapMutations, mapState} from 'vuex'
 import List from '../list/List.vue' 
+import AddList from '../list/AddList.vue'
 import dragger from '../../utils/dragger.js'
 import BoardSettings from "./BoardSettings.vue"
 
 
 export default {
   components:{
-    List, BoardSettings
+    List,
+    AddList, 
+     BoardSettings
   },
   data() {
     return {
       bid: 0,
       loading: true,
-      cDragger: null
+      cDragger: null,
+      isEditTitle: false,
+      inputTitle: '',
+
     };
   },
   computed:{
@@ -50,6 +61,7 @@ export default {
   },
   created() {
     this.fetchData().then(()=>{
+      this.inputTitle = this.board.title
       this.SET_THEME('#' + this.board.bgColor)
       this.SET_IS_SHOW_BOARD_SETTINGS(false)
 
@@ -67,13 +79,15 @@ export default {
     ...mapActions([
       'FETCH_BOARD',
       'FETCH_LIST',
-      'UPDATE_CARD_POS'
+      'UPDATE_CARD_POS',
+      'UPDATE_BOARD'
     ]),
     fetchData(){
         this.loading = true
-        console.log(this.$route.params.bid)
+
         return this.FETCH_BOARD({id: this.$route.params.bid})
-        .then(()=>{ this.loading = false
+        .then(()=>{ 
+          this.loading = false
           this.FETCH_LIST({boardId:this.$route.params.bid})
         })
         
@@ -103,6 +117,22 @@ export default {
     },
     onShowSettings(){
       this.SET_IS_SHOW_BOARD_SETTINGS(true)
+    },
+    onClickTitle(){
+      this.isEditTitle = true;
+      this.$nextTick(()=>this.$refs.inputTitle.focus())
+    },
+    onSubmitTitle(){
+      this.isEditTitle = false;
+
+      // this.inputTitle = this.inputTilte.trim()
+      if(!this.inputTitle) return
+
+      const id = this.board.boardId
+      const title = this.inputTitle
+      if(title===this.board.tilte) return
+
+      this.UPDATE_BOARD({id, title, bgColor: this.board.bgColor})
     }
   }
 }

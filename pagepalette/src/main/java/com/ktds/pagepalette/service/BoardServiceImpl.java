@@ -49,13 +49,13 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public Long modifyBoard(BoardReq boardReq) {
-        Optional<Board> board = boardRepository.findById(boardReq.getId());
-        if(board.isEmpty()){
+        Optional<Board> optionalBoard = boardRepository.findById(boardReq.getId());
+        if(optionalBoard.isEmpty()){
             throw new NotFoundException("존재하지 않는 보드 아이디");
         }
-        Board updated = board.get();
-        updated.update(boardReq.getTitle(), boardReq.getBgColor());
-        return boardRepository.save(updated).getId();
+        Board board = optionalBoard.get();
+        board.update(boardReq.getTitle(), boardReq.getBgColor());
+        return board.getId();
     }
 
     @Override

@@ -15,14 +15,25 @@ const actions = {
             commit('SET_BOARD', data)
         })
     },
+    DELETE_BOARD(_, {id}){
+        return api.board.destroyBoard(id)
+    },
+    UPDATE_BOARD({dispatch, state}, {id, title, bgColor}){
+        return api.board.update({title, bgColor, userEmail:localStorage.getItem("email"), id })
+        .then(()=> dispatch('FETCH_BOARD', {id: state.board.boardId}))
+    },
+
+
     FETCH_LIST({commit}, {boardId}){
         return api.list.fetchList(boardId).then(data=>{
         commit('SET_LIST', data)
        })
     },
-    DELETE_BOARD(_, {id}){
-        return api.board.destroyBoard(id)
+    ADD_LIST({dispatch, state}, {boardId, bookTitle, bookIsbn}){
+        return api.list.create({boardId, bookTitle, bookIsbn})
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
+
 
 // -------------      CARD      -------------
     ADD_CARD({dispatch, state},  {title, listId, pos, bgColor, description}){
@@ -48,7 +59,8 @@ const actions = {
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
 
-    ////////////////// user
+// ---------------         user          ---------------------
+
     LOGIN({commit}, {email, password}){
         localStorage.setItem('email', email)
         return api.auth.login(email, password)

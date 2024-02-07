@@ -42,12 +42,18 @@ export const board = {
     },
     destroyBoard(id){
         return request('delete', `/board/${id}` )
-    }
+    },
+    update(payload){
+        return request('put', `/board`, payload)
+    },
 
 }
 export const list = {
     fetchList(boardId){
         return request('get', `/list/${boardId}`)
+    },
+    create(payload){
+        return request('post', `/list`, payload)
     }
 }
 
