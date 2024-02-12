@@ -54,7 +54,10 @@ export const list = {
     },
     create(payload){
         return request('post', `/list`, payload)
-    }
+    },
+    destroyList(listId){
+        return request('delete', `/list/${listId}`)
+    },
 }
 
 export const card = {
@@ -74,6 +77,12 @@ export const card = {
         return request('delete', `/card/${cardId}`)
     }
 
+}
+
+export const book = {
+    search(title){
+        return request('get', `/book/search?bookTitle=${title}&size=50&page=0`)
+    }
 }
 
 export const auth = {

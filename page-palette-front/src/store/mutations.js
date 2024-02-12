@@ -10,6 +10,12 @@ const mutations = {
     SET_BOARD(state, board){
         state.board = board
     },
+    SET_IS_ADD_LIST(state, toggle){
+        state.isAddList = toggle;
+    },
+    SET_BOOKS(state, books){
+        state.books = books
+    },
     SET_LIST(state, list){
         state.list = list
     },
@@ -41,6 +47,8 @@ const mutations = {
         // delete localStorage.token
         delete localStorage.email
         // api.setAuthInHeader(null)
+        state.bodyColor = '#ffffff'
+        state.navbarColor = '#026aa7'
     },
 }
 

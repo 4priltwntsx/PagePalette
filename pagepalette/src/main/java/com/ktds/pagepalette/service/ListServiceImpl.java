@@ -31,7 +31,7 @@ public class ListServiceImpl implements ListService{
         if(optBoard.isEmpty()) throw new NotFoundException("존재하지 않는 보드 아이디!");
         List list = List.builder()
                 .board(optBoard.get())
-                .bookTitle(req.getBookTitle()).isActive(true).bookIsbn("9788973814725")
+                .bookTitle(req.getBookTitle()).isActive(true).bookIsbn(req.getBookIsbn())
                 .build();
         Long id = listRepository.save(list).getId();
         return id > 0;
@@ -66,7 +66,6 @@ public class ListServiceImpl implements ListService{
         if(optList.isEmpty()) throw new NotFoundException("존재하지 않는 리스트 아이디!");
         List list = optList.get();
         list.deleteList();
-        listRepository.save(list);
         return true;
     }
 }
