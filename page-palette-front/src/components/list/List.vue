@@ -1,7 +1,9 @@
 <template>
   <div class="list">
     <div class="list-header">
-      <div class="list-header-title">{{data.bookTitle}}</div>
+      <div class="list-header-title">{{truncatedBookTitle }}</div>
+      <a class="delete-list-btn" href="" @click.prevent="onDeleteList">&times;</a>
+
     </div>
     <div class="card-list" :data-list-id="data.listId">
 
@@ -22,6 +24,8 @@
 <script>
 import AddCard from '../card/AddCard.vue'
 import CardItem from '../card/CardItem.vue'
+import { mapState, mapMutations, mapActions } from 'vuex'
+
 export default {
   components: {AddCard, CardItem},
   props: ['data'],
@@ -30,17 +34,30 @@ export default {
       isAddCard: false
     }
   },
-  computed:{
-
-  },
+  computed: {
+  truncatedBookTitle() {
+    const maxLength = 20; // 최대 길이 설정
+    if (this.data.bookTitle.length > maxLength) {
+      return this.data.bookTitle.slice(0, maxLength) + '...'; // 일정 길이로 자르고 생략 부호 추가
+    }
+    return this.data.bookTitle;
+  }
+},
   created() {
     this.fetchData()
   },
 
   methods:{
+    ...mapActions([
+      'DELETE_LIST'
+    ]),
 
     fetchData(){
         console.log("이거이거" + this.data.listId)
+    },
+    onDeleteList() {
+      if (!confirm(`Delete ${this.data.bookTitle} list?`)) return
+      this.DELETE_LIST({ listId: this.data.listId })
     }
 }
 

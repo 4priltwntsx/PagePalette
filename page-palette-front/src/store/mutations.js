@@ -47,6 +47,8 @@ const mutations = {
         // delete localStorage.token
         delete localStorage.email
         // api.setAuthInHeader(null)
+        state.bodyColor = '#ffffff'
+        state.navbarColor = '#026aa7'
     },
 }
 

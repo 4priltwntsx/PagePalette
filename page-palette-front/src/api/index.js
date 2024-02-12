@@ -54,7 +54,10 @@ export const list = {
     },
     create(payload){
         return request('post', `/list`, payload)
-    }
+    },
+    destroyList(listId){
+        return request('delete', `/list/${listId}`)
+    },
 }
 
 export const card = {

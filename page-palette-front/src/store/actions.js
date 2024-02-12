@@ -33,6 +33,10 @@ const actions = {
         return api.list.create({boardId, bookTitle, bookIsbn})
         .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
     },
+    DELETE_LIST ({ state, dispatch }, {listId}) {
+        return api.list.destroyList(listId)
+        .then(_ => dispatch('FETCH_LIST', {boardId: state.board.boardId}))
+      },
 
     FETCH_BOOK({commit}, {title}){
         return api.book.search(title)

@@ -10,31 +10,31 @@
       &plus; Create new List
     </a>
   </div> -->
-
-  <Modal >
-    <div slot="header">
-      <h2>
-        new List of your Book
-        <a href="" class="modal-default-button" @click.prevent="SET_IS_ADD_LIST(false)">&times;</a>
-      </h2>
+  <Modal>
+  <div slot="header">
+    <h2>
+      new List of your Book
+      <a href="" class="modal-default-button" @click="closeModal">&times;</a>
+    </h2>
+  </div>
+  <div slot="body">
+    <form id="add-list" @submit.prevent="searchBook">
+      <input class="form-control" type="text" v-model="input" ref="input">
+    </form>
+    <div v-if="isBooks" style="overflow-y: auto;">
+      <ul class="finded-books">
+        <BookItems v-for="(book, i) in books.bookList" :key="i" :book="book"/>
+      </ul>
     </div>
-    <div slot="body"  >
-      <form id="add-board-form" @submit.prevent="searchBook">
-        <input class="form-control" type="text" v-model="input" ref="input">
-      </form>
-      <div  v-if="isBooks" style="overflow-y: auto;"> 여기에 출력
-        <ul class="finded-books">
-          <BookItems v-for="book, i in this.books.bookList" :key="i" v-bind:book="book" />
-        </ul>
-      </div>
-    </div>
-    <div slot="footer">
-      <button class="btn" :class="{ 'btn-success': valid }" type="submit" form="add-board-form" :disabled="!valid">
-        Create List</button>
-    </div>
-  </Modal>
+  </div>
+  <div slot="footer">
+    <button class="btn" :class="{ 'btn-success': valid }" type="submit" form="add-list" :disabled="!valid">
+      Create List
+    </button>
+  </div>
+</Modal>
+  
 </template>
-
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
 import Modal from '../common/Modal.vue'
@@ -51,6 +51,7 @@ export default {
       input: '',
       valid: false,
       books: [],
+      selectedBook: null,
       isBooks: true,
     }
   },
@@ -97,7 +98,7 @@ export default {
 
       const title = this.inputTitle
       const curList = this.$store.state.list
-      const lastList = curList[curList.length - 1]
+      // const lastList = curList[curList.length - 1]
       //   const pos = lastList ? lastList.pos * 2 : 65535
       const bookIsbn = "9791168473690"
       const boardId = this.$store.state.board.boardId
@@ -107,6 +108,12 @@ export default {
       this.isAddList = false
       this.inputTitle = ''
     },
+    closeModal() {
+    this.SET_IS_ADD_LIST(false);
+  },
+  selectBook(book) {
+    this.input = book.bookTitle;
+  },
   }
 }
 </script>
