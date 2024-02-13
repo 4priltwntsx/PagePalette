@@ -25,4 +25,9 @@ public class BookController {
 
         return new ResponseEntity<>(map, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/{bookIsbn}")
+    public ResponseEntity<?> getBookInfo(@PathVariable String bookIsbn){
+        return new ResponseEntity<>(bookService.findBookInfo(bookIsbn), HttpStatus.ACCEPTED);
+    }
 }

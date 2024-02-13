@@ -82,6 +82,10 @@ export const card = {
 export const book = {
     search(title){
         return request('get', `/book/search?bookTitle=${title}&size=50&page=0`)
+    },
+    fetchBook(bookIsbn){
+        console.log("api indext----:"+ bookIsbn)
+        return request('get', `/book/${bookIsbn}`)
     }
 }
 

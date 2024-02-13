@@ -41,6 +41,7 @@ export default {
 </script>
 
 <style>
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
