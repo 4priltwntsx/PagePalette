@@ -25,7 +25,7 @@ const mutations = {
     },
     SET_THEME(state, color){
         state.bodyColor = color || '#ffffff'
-        state.navbarColor = color ? 'rgba(0,0,0,.15)' : '#026aa7'
+        state.navbarColor = color ? 'rgba(0,0,0,.15)' : '#EEE8AA'
     },
     SET_IS_SHOW_BOARD_SETTINGS(state, toggle){
         state.isShowBoardSettings = toggle;
@@ -48,7 +48,7 @@ const mutations = {
         delete localStorage.email
         // api.setAuthInHeader(null)
         state.bodyColor = '#ffffff'
-        state.navbarColor = '#026aa7'
+        state.navbarColor = '#EEE8AA'
     },
 }
 

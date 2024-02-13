@@ -1,15 +1,4 @@
 <template>
-  <!-- <div class="add-list">
-    <input class="form-control" v-if="isAddList" type="text" ref="inputTitle" 
-      v-model="inputTitle" @keyup.enter="onSubmitTitle" @blur="restore">
-    <a v-else @click="onAddList">&plus; Add another list</a>
-  </div> -->
-
-  <!-- <div class="add-list">
-    <a href="" @click.prevent="addList">
-      &plus; Create new List
-    </a>
-  </div> -->
   <Modal>
   <div slot="header">
     <h2>
@@ -17,20 +6,18 @@
       <a href="" class="modal-default-button" @click="closeModal">&times;</a>
     </h2>
   </div>
-  <div slot="body">
+  <div slot="body" style="max-height:500px; overflow-y:auto;">
     <form id="add-list" @submit.prevent="searchBook">
       <input class="form-control" type="text" v-model="input" ref="input">
     </form>
     <div v-if="isBooks" style="overflow-y: auto;">
-      <ul class="finded-books">
+      <div class="finded-books">
         <BookItems v-for="(book, i) in books.bookList" :key="i" :book="book"/>
-      </ul>
+      </div>
     </div>
   </div>
   <div slot="footer">
-    <button class="btn" :class="{ 'btn-success': valid }" type="submit" form="add-list" :disabled="!valid">
-      Create List
-    </button>
+
   </div>
 </Modal>
   
@@ -142,4 +129,19 @@ export default {
     width: 60%;
     max-height: 400;
 }
+/* ::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background-color: var(--border-color);
+} */
 </style>

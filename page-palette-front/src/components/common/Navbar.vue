@@ -1,7 +1,7 @@
 <template>
     <nav class="header">
       <div class="header-logo">
-        <router-link to="/">Home</router-link>
+        <router-link to="/"><img src="../../img/PPalette_logo.png" style="width:130px;" alt="PPalette"></router-link>
       </div>
       <div class="header-auth">
         <a href="" v-if="isAuth" @click.prevent="logout">Logout</a>
@@ -64,14 +64,13 @@
     color: rgba(255,255,255,.5);
   }
   .header-logo {
-    position: absolute;
-    left: 50%;
-    top: 7px;
-    margin-left: -30px;
     text-align: center;
-    font-weight: bolder;
-    font-size: 24px;
   }
+  .header-logo img {
+  max-width: 100%; /* 이미지의 크기를 최대 너비로 지정 */
+  height: auto; /* 이미지의 비율 유지 */
+  vertical-align: middle; /* 이미지를 수직 가운데 정렬하기 위해 추가 */
+}
   .header-logo a:hover,
   .header-logo a:focus {
     color: rgba(255,255,255,.9);

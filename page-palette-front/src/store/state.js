@@ -7,7 +7,7 @@ const state = {
     list: {},
     card: {},
     bodyColor: '#ffffff',
-    navbarColor: '#026aa7',
+    navbarColor: '#EEE8AA',
     isShowBoardSettings: false,
     books:[],
 }

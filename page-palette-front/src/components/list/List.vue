@@ -36,7 +36,7 @@ export default {
   },
   computed: {
   truncatedBookTitle() {
-    const maxLength = 20; // 최대 길이 설정
+    const maxLength = 15; // 최대 길이 설정
     if (this.data.bookTitle.length > maxLength) {
       return this.data.bookTitle.slice(0, maxLength) + '...'; // 일정 길이로 자르고 생략 부호 추가
     }
