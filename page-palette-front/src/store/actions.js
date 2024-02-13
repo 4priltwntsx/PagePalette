@@ -40,9 +40,13 @@ const actions = {
 
     FETCH_BOOK({commit}, {title}){
         return api.book.search(title)
-        // .then(data=>{
-        //     commit('SET_BOOKS', data.bookList)
-        // })
+    },
+    FETCH_BOOKDETAIL({commit}, {bookIsbn}){
+        return api.book.fetchBook(bookIsbn).then(data=>{
+            console.log("actions----"+ bookIsbn)
+            commit('SET_BOOK', data)
+            console.log(data)
+        })
     },
 // -------------      CARD      -------------
     ADD_CARD({dispatch, state},  {title, listId, pos, bgColor, description}){

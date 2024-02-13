@@ -10,6 +10,7 @@ const state = {
     navbarColor: '#EEE8AA',
     isShowBoardSettings: false,
     books:[],
+    bookDetail:null,
 }
 
 export default state

@@ -1,5 +1,6 @@
 package com.ktds.pagepalette.service;
 
+import com.ktds.pagepalette.dto.book.BookInfoRes;
 import com.ktds.pagepalette.dto.book.BookSearchRes;
 import com.ktds.pagepalette.entity.Book;
 import com.ktds.pagepalette.repository.BookRepository;
@@ -36,5 +37,10 @@ public class BookServiceImpl implements BookService{
         result.put("bookList", list);
         result.put("hasNext", books.hasNext());
         return result;
+    }
+
+    @Override
+    public BookInfoRes findBookInfo(String bookIsbn) {
+        return bookRepository.findBookByBookIsbn(bookIsbn);
     }
 }

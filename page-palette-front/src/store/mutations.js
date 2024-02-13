@@ -30,6 +30,10 @@ const mutations = {
     SET_IS_SHOW_BOARD_SETTINGS(state, toggle){
         state.isShowBoardSettings = toggle;
     },
+    SET_BOOK(state, bookDetail){
+        console.log("state here----" + bookDetail)
+        state.bookDetail = bookDetail;
+    },
 // -------------------------------------------------------
 
     LOGIN(state, token){

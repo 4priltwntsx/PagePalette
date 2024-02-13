@@ -1,5 +1,6 @@
 package com.ktds.pagepalette.service;
 
+import com.ktds.pagepalette.dto.book.BookInfoRes;
 import com.ktds.pagepalette.entity.Book;
 import org.springframework.data.domain.Pageable;
 
@@ -9,4 +10,6 @@ import java.util.HashMap;
 public interface BookService {
     public ArrayList<Book> findAll();
     public HashMap<String, Object> searchBooks(String title, Pageable pageable);
+
+    public BookInfoRes findBookInfo(String bookIsbn);
 }

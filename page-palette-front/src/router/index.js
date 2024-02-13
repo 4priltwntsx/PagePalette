@@ -5,6 +5,7 @@ import Login from "../components/Login.vue";
 import NotFound from "../components/common/NotFound.vue";
 import Board from "../components/board/Board.vue";
 import Card from "../components/card/Card.vue";
+import BookInfo from "../components/list/BookInfo.vue"
 import store from '../store'
 
 Vue.use(VueRouter);
@@ -43,7 +44,10 @@ const router = new VueRouter({
         {
           path: "c/:cid",
           component: Card,
-        }
+        },{
+          path: "l/:bookIsbn",
+          component: BookInfo,
+        },
       ],
     },
     {

@@ -1,0 +1,7 @@
+/* public/fonts.css */
+
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('/fonts/RIDIBatang.otf') format('opentype');
+  }
+  

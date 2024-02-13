@@ -19,9 +19,15 @@ export default {
 </script>
 
 <style>
+@import './public/fonts/fonts.css'; /* fonts.css 파일 가져오기 */
+body{
+    font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+
+}
 html, body, #app {
   height: 100%;
   margin: 0px;
+
 }
 #app {
   display: flex;

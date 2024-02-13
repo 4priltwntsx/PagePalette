@@ -1,7 +1,9 @@
 <template>
   <div class="list">
-    <div class="list-header">
-      <div class="list-header-title">{{truncatedBookTitle }}</div>
+    <div class="list-header">    
+      <router-link :to="`/b/${boardId}/l/${data.bookIsbn}`" style="text-decoration:none">
+      <div class="list-header-title" >{{truncatedBookTitle }}</div>
+      </router-link>
       <a class="delete-list-btn" href="" @click.prevent="onDeleteList">&times;</a>
 
     </div>
@@ -35,6 +37,10 @@ export default {
     }
   },
   computed: {
+        ...mapState({
+      boardId: state =>state.board.boardId
+    }),
+    
   truncatedBookTitle() {
     const maxLength = 15; // 최대 길이 설정
     if (this.data.bookTitle.length > maxLength) {
@@ -58,6 +64,9 @@ export default {
     onDeleteList() {
       if (!confirm(`Delete ${this.data.bookTitle} list?`)) return
       this.DELETE_LIST({ listId: this.data.listId })
+    },
+    clickTitle(){
+      console.log("눌렀당ㅎㅎ")
     }
 }
 
@@ -86,7 +95,10 @@ export default {
   font-weight: 700;
   padding-left: 8px;
   line-height: 30px;
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
+  color: black; /* 텍스트 색상을 검은색으로 변경 */
 }
+
 .input-title {
   width: 90%;
 }
