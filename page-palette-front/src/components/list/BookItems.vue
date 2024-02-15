@@ -36,13 +36,23 @@ export default {
 </script>
 
 <style>
+@import '../../public/fonts/fonts.css'; /* fonts.css 파일 가져오기 */
+
+body{
+    font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+
+}
 .book-item{
     width:40%;
+        font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+
 }
 .book-item a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.705);
   font-weight: 600;
+      font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+
 }
 .selected-book {
   background-color: yellow; /* 선택된 책의 배경색을 변경할 수 있습니다. */

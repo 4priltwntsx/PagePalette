@@ -2,13 +2,13 @@
   <Modal class="modal-card" v-if="bookDetail!=null">
     <div slot="header" class="modal-card-header">
       <div class="modal-card-header-title">
-        <h3>{{bookDetail.bookTitle}}</h3>
+        <h2>{{bookDetail.bookTitle}}</h2>
       </div>
       <a class="modal-close-btn" href="" @click.prevent="onClose">&times;</a>
     </div>
     <div slot="body" style="display:flex; gap:20px;">
       <img :src="bookDetail.bookImage" style="width: 30%"><div style="font-size:18px"><div style="line-height:1.5"><b>저자</b><br/>{{bookDetail.authorName}}<br/><br/></div>
-      <div ><b>책 설명</b><br/><br/>{{bookDetail.bookDescription}}</div>
+      <div ><b>책 설명</b><br/>{{bookDetail.bookDescription}}</div>
       </div>
     </div>
     <div slot="footer"></div>
@@ -53,6 +53,12 @@ export default {
 </script>
 
 <style>
+@import '../../public/fonts/fonts.css'; /* fonts.css 파일 가져오기 */
+
+body{
+    font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+
+}
 .modal-card .modal-container {
   min-width: 300px;
   max-width: 800px;

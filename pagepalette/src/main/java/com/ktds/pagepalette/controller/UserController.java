@@ -4,6 +4,7 @@ import com.ktds.pagepalette.dto.user.UserJoinReq;
 import com.ktds.pagepalette.dto.user.UserLoginReq;
 import com.ktds.pagepalette.dto.user.UserLoginRes;
 import com.ktds.pagepalette.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +23,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/join")
+    @Operation(summary = "회원가입")
     public ResponseEntity<?> join(@RequestBody UserJoinReq request) throws Exception {
         return new ResponseEntity<>(userService.join(request), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login")
+    @Operation(summary = "로그인")
     public ResponseEntity<?> login(@RequestBody UserLoginReq request) throws Exception {
         Optional<UserLoginRes> response = userService.login(request);
         if (response.isEmpty()) {
@@ -36,6 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/check")
+    @Operation(summary = "이메일 중복 체크")
     public ResponseEntity<?> checkEmail(@RequestParam("email") String email) {
         return new ResponseEntity<>(userService.checkEmail(email), HttpStatus.ACCEPTED);
     }

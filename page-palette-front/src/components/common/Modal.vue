@@ -41,7 +41,12 @@ export default {
 </script>
 
 <style>
+@import '../../public/fonts/fonts.css'; /* fonts.css 파일 가져오기 */
 
+div{
+    font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
+    line-height:1.5;
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;

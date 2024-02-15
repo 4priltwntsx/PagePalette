@@ -20,6 +20,7 @@ export default {
 
 <style>
 @import './public/fonts/fonts.css'; /* fonts.css 파일 가져오기 */
+
 body{
     font-family: 'RIDIBatang', sans-serif; /* 사용할 폰트 설정 */
 
